@@ -27,6 +27,7 @@ from .managers import EventManager
 from .utils import get_additional_styles, date_or_datetime
 
 STANDARD = 'standard'
+HORIZONTAL='horizontal'
 
 
 class Event(TranslatedAutoSlugifyMixin,
@@ -336,7 +337,8 @@ class BaseEventPlugin(CMSPlugin):
 
 class EventListPlugin(BaseEventPlugin):
     STYLE_CHOICES = [
-        (STANDARD, _('Standard')),
+        (STANDARD, _('Stacked')),
+        (HORIZONTAL, _('Horizontal')),
     ]
 
     style = models.CharField(
@@ -361,7 +363,8 @@ class EventListPlugin(BaseEventPlugin):
 
 class UpcomingPluginItem(BaseEventPlugin):
     STYLE_CHOICES = [
-        (STANDARD, _('Standard')),
+        (STANDARD, _('Stacked')),
+        (HORIZONTAL, _('Horizontal')),
     ]
 
     FUTURE_EVENTS = _('future events')
