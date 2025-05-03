@@ -5,8 +5,8 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.encoding import force_text
-from django.utils.translation import override, ugettext_lazy as _, ugettext
+from django.utils.encoding import force_str
+from django.utils.translation import override, gettext_lazy as _, gettext
 
 from cms.models import CMSPlugin
 from cms.models.fields import PlaceholderField
@@ -272,8 +272,8 @@ class EventCoordinator(models.Model):
 
 class Registration(models.Model):
     SALUTATIONS = Choices(
-        ('SALUTATION_FEMALE', 'mrs', ugettext('Ms.')),
-        ('SALUTATION_MALE', 'mr', ugettext('Mr.')),
+        ('SALUTATION_FEMALE', 'mrs', gettext('Ms.')),
+        ('SALUTATION_MALE', 'mr', gettext('Mr.')),
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -350,7 +350,7 @@ class EventListPlugin(BaseEventPlugin):
     events = SortedManyToManyField(Event, blank=True)
 
     def __str__(self):
-        return force_text(self.pk)
+        return force_str(self.pk)
 
     def copy_relations(self, oldinstance):
         super(EventListPlugin, self).copy_relations(oldinstance)
@@ -400,7 +400,7 @@ class UpcomingPluginItem(BaseEventPlugin):
     )
 
     def __str__(self):
-        return force_text(
+        return force_str(
             self.PAST_EVENTS if self.past_events else self.FUTURE_EVENTS
         )
 
@@ -416,4 +416,4 @@ class EventCalendarPlugin(BaseEventPlugin):
     )
 
     def __str__(self):
-        return force_text(self.pk)
+        return force_str(self.pk)

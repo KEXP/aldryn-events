@@ -20,7 +20,7 @@ REQUIREMENTS = [
     'djangocms-text-ckeditor',
     'python-dateutil',
     'six',
-    'Django>=3.2,<4',
+    'Django>=3.2,<5',
 ]
 
 # https://pypi.python.org/pypi?%3Aaction=list_classifiers
